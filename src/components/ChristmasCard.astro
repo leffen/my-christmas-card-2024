@@ -1,0 +1,126 @@
+---
+import '../styles/styles.css';
+
+
+---
+<div class="card">
+  <div class="sky">
+    </div>
+    <div class="christmas-tree"></div>
+  <div class="ground">
+    <div class="tree"></div>
+    <div class="tree"></div>
+    <div class="tree"></div>
+  </div>
+</div>
+
+<style>
+  .card {
+    height: 100vw;
+  }
+
+  .christmas-tree {
+  width: 0;
+  height: 0;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  border-bottom: 50px solid green;
+  position: relative;
+}
+
+.christmas-tree::before {
+  content: "";
+  position: absolute;
+  top: -25px;
+  left: -15px;
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 40px solid green;
+}
+
+.christmas-tree::after {
+  content: "";
+  position: absolute;
+  top: -50px;
+  left: -10px;
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 30px solid green;
+
+  /* Add more decorations */
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: gold;
+}
+
+.christmas-tree::after:nth-child(2) {
+  top: -40px;
+  left: 15px;
+  background-color: silver;
+}
+
+.christmas-tree::after:nth-child(3) {
+  top: -55px;
+  left: -10px;
+  background-color: purple;
+}
+
+.decoration {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: red;
+}
+
+.decoration:nth-child(1) {
+  top: -10px;
+  left: 10px;
+}
+
+.decoration:nth-child(2) {
+  top: -30px;
+  left: -10px;
+}
+
+.decoration:nth-child(3) {
+  top: -45px;
+  left: 5px;
+}
+</style>
+
+<script is:inline>
+
+    let sky = document.querySelector('.sky');
+
+    setInterval(() => {
+      const snowflake = document.createElement('span');
+      snowflake.classList.add('snowflake');
+      snowflake.textContent = '❄️';
+
+      // Randomize snowflake position, size, and fall speed
+      snowflake.style.left = `${Math.random() * 100}%`;
+      snowflake.style.top = `${Math.random() * 100}%`;
+      snowflake.style.fontSize = `${Math.random() * 2 + 1}em`;
+      snowflake.style.animationDuration = `${Math.random() * 3 + 2}s`;
+
+      sky.appendChild(snowflake);
+
+      // Animate the snowflake
+      snowflake.style.animation = 'fall 3s linear infinite';
+
+      setTimeout(() => {
+        sky.removeChild(snowflake);
+      }, 3000);
+    }, 100);
+
+</script>
